@@ -1,0 +1,56 @@
+{#
+ # Layout template
+ # ---------------
+ #
+ # This template defines your site’s global layout. It can be
+ # “extended” by other templates to fill in the gaps.
+ #
+ # See Twig’s Template Inheritance documentation for more details:
+ # http://twig.sensiolabs.org/doc/templates.html#template-inheritance
+ #}
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+<head>
+	<meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>{% if title is defined %}{{ title }} - {% endif %}{{ siteName }}</title>
+	<link rel="home" href="{{ siteUrl }}" />
+  <!-- Bootstrap core CSS -->
+  {% includeCssFile "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" %}
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700" rel="stylesheet">
+  {% includeCssFile "/assets/css/" ~ style ~ "style.css" %}
+</head>
+
+<body>
+  <!-- Top info bar -->
+  {% include 'modules/top-info-bar/_topinfo' %}
+
+  <!-- Navigation -->
+  {% include 'modules/navigation/_navigation' %}
+
+  <!-- heading image -->
+  {% set image = entry.pageHeadingImage.first() %}
+
+  {% if entry.pageHeadingImage | length %}
+    <div class="container-fluid subpage-header text-center" style="background: url({{image.getUrl()}})">
+  {% else %}
+    <div class="container-fluid subpage-header text-center">
+  {% endif %}
+
+  {% set title = entry.title %}
+  <h2>{{ title }}</h2>
+  </div>
+
+	<div class="container content-container">
+		<main id="content" role="main">
+			{% block content %}
+				<p>If you see me, you haven’t set your <code>{% verbatim %}{% block content %}…{% endblock %}{% endverbatim %}</code> yet.</p>
+				<p>See Twig’s <a href="http://twig.sensiolabs.org/doc/templates.html#template-inheritance">Template Inheritance</a> documentation for an explanation.</p>
+			{% endblock %}
+		</main>
+	</div>
+
+{% includeJsFile "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" %}
+</body>
+</html>

@@ -1,0 +1,119 @@
+{#
+ # Homepage template
+ # ---------------
+ #
+ # When this template gets loaded, it will be because someone has accessed
+ # http://yoursite.com/ (without any URI). Craft checks to see if you have
+ # a Single section set to be the Homepage (as you do, by default), and
+ # loads the section’s Template (this file). A special ‘entry’ variable
+ # will already be set for you, assigned to the Homepage entry.
+ #
+ # It's worth noting that even if you didn't have a Homepage Single section,
+ # as long as this template remains at craft/templates/index.html, it
+ # would still be the one to get loaded when accessing http://yoursite.com/,
+ # albeit without an ‘entry’ variable already set for you.
+ #
+ # http://myvars.io/hello-world/ <-- if error
+ # See this page for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_layout" %}
+
+{% block content %}
+<div class="hero">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h1 class="hero-title">Anayza</h1>
+        <h3 class="hero-subheading">The Place of Healing</h3>
+        <a href="#" class="launch-modal" data-modal-id="modal-video">
+          <img src="assets/images/play-btn.png">
+        </a>
+        <div class="row">
+          <div class="col-md-3"></div>
+          <div class="col-md-6">
+            <p class="hero-paragraph">
+              As a proud, unified Treaty First Nations, we are here to serve the members of the Chipewyan Prairie Dene First Nation with respect, integrity, and honesty.
+            </p>
+          </div>
+          <div class="col-md-3"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="community-info-heading">
+  <div class="container">
+    <h2>Community Information</h2>
+  </div>
+</div>
+
+<div class="container home-news-container">
+  <div class="row">
+    <div class="col-md-8">
+      <h3>Latest Updates</h3>
+      <hr />
+      {% include 'modules/news/_news-slider' %}
+    </div>
+    <div class="col-md-4">
+      <h3>Upcoming Events</h3>
+      <hr />
+      {% include 'modules/home-events/_events' %}
+      <button class="btn btn-orange">More Events</button>
+      <hr  />
+      <h3>Office Hours</h3>
+      <div class="business-hours">
+        <ul class="list-unstyled opening-hours">
+          <li>Sunday <span class="pull-right">Closed</span></li>
+          <li>Monday <span class="pull-right">9:00-4:30</span></li>
+          <li>Tuesday <span class="pull-right">9:00-4:30</span></li>
+          <li>Wednesday <span class="pull-right">9:00-4:30</span></li>
+          <li>Thursday <span class="pull-right">9:00-4:30</span></li>
+          <li>Friday <span class="pull-right">9:00-1:30</span></li>
+          <li>Saturday <span class="pull-right">Closed</span></li>
+        </ul>
+        <small>We are closed for lunch from 12 - 1pm</small>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Newsletter box -->
+
+<div class="newsletter-container">
+  <div class="container">
+      <h3 class="newsletter-heading">SIGN UP FOR OUR NEWSLETTER</h3>
+      <form action="#">
+        <input type="email" class="newsletter-input" placeholder="Your Email Address" required="">
+      </form>
+      <h5 class="newsletter-signup">Sign Up</h5>
+  </div>
+</div>
+
+
+<!-- MODAL -->
+  <div class="modal fade" id="modal-video" tabindex="-1" role="dialog" aria-labelledby="modal-video-label">
+      <div class="modal-dialog" role="document">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                  </button>
+              </div>
+              <div class="modal-body">
+                  <div class="modal-video">
+                      <div class="embed-responsive embed-responsive-16by9">
+                          <iframe src="https://player.vimeo.com/video/93408185" width="640" height="358" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>                              webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+
+{{ getFootHtml() }}
+
+{% endblock %}

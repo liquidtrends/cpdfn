@@ -1,0 +1,39 @@
+{#
+ # News index template
+ # -------------------
+ #
+ # This template is loaded whenever http://example.com/news is
+ # requested, because it is located at news/index.html in your
+ # craft/templates/ folder.
+ #
+ # See this page for more details on how Craft routes requests:
+ # http://craftcms.com/docs/routing
+ #}
+
+{% extends "_sublayout" %}
+{% set title = "Latest News" %}
+
+{% block content %}
+<div class="row">
+  {% paginate craft.entries.section('latestNews').limit(100) as pageEntries %}
+  {% for entry in craft.entries.section('latestNews').find() %}
+  <div class="col-md-4">
+    <div class="single-blog-item">
+      <div class="blog-thumnail">
+        <a href="{{ entry.url }}"><img class="news-image" src="{{ entry.newsImage.first.url }}"></a>
+      </div>
+      <div class="blog-content">
+        <h5><a href="{{ entry.url }}">{{ entry.title }}</a></h5>
+        <p>{{ entry.summary }}</p>
+        <a href="{{ entry.url }}" class="more-btn">View More</a>
+      </div>
+      <span class="blog-date">Posted on {{ entry.postDate.format('F d, Y') }}</span>
+    </div>
+  </div>
+  {% endfor %}
+  {% if paginate.prevUrl %}<a href="{{ paginate.prevUrl }}">Previous Page</a>{% endif %}
+  {% if paginate.nextUrl %}<a href="{{ paginate.nextUrl }}">Next Page</a>{% endif %}
+  {% endpaginate %}
+<div>
+
+{% endblock %}

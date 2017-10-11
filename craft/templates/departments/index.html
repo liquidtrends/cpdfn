@@ -1,0 +1,27 @@
+{#
+ # Departments index template
+ # -------------------
+ #}
+
+{% extends "_sublayout" %}
+{% set title = "Departments" %}
+
+
+{% block content %}
+<div class="row">
+  {% paginate craft.entries.section('departments').limit(100) as pageEntries %}
+  {% for entry in craft.entries.section('departments').find() %}
+  <div class="col-md-3">
+    <div class="single-department-item">
+      <div class="blog-thumnail">
+        <a href="{{ entry.url }}"><img class="department-image" src="{{ entry.departmentImage.first.url }}"></a>
+      <span class="department-title">{{ entry.title }}</span>
+    </div>
+  </div>
+  {% endfor %}
+  {% if paginate.prevUrl %}<a href="{{ paginate.prevUrl }}">Previous Page</a>{% endif %}
+  {% if paginate.nextUrl %}<a href="{{ paginate.nextUrl }}">Next Page</a>{% endif %}
+  {% endpaginate %}
+<div>
+
+{% endblock %}

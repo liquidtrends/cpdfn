@@ -1,0 +1,19 @@
+  {% paginate craft.entries.section('latestNews').limit(100) as pageEntries %}
+  {% for entry in craft.entries.section('latestNews').find() %}
+  <div class="row blog-container">
+    <div class="col-md-3">
+      <div class="blog-thumnail">
+        <a href="{{ entry.url }}"><img class="news-image" src="http://via.placeholder.com/370x275" alt="blog-img"></a>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <h4 class="blog-title"><a href="{{ entry.url }}">{{ entry.title }}</a></h4>
+      <span class="blog-date">Posted on {{ entry.postDate.format('F d, Y') }}</span>
+      <p>{{ entry.summary }}</p>
+      <a href="{{ entry.url }}" class="more-btn-sm">View More</a>
+    </div>
+  </div>
+  {% endfor %}
+  {% if paginate.prevUrl %}<a href="{{ paginate.prevUrl }}">Previous Page</a>{% endif %}
+  {% if paginate.nextUrl %}<a href="{{ paginate.nextUrl }}">Next Page</a>{% endif %}
+  {% endpaginate %}

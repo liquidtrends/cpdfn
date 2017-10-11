@@ -1,0 +1,22 @@
+{% extends "_sublayout" %}
+{% block content %}
+
+
+<header class="alt">
+  <div class="flex">
+    <div class="g1-flex4 g2-flex6 g3-flex12">
+      <h1 class="alpha center reverse">{{ title }}</h1>
+    </div>
+  </div>
+</header>
+<section class="info-hero alt">
+  <div class="flex">
+    <div class="g1-flex4 g2-flex6 g3-flex8 g3-offset2">
+      {% if entry.body|length %}
+        <div class="epsilon center reverse">{{ entry.body }}</div>
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}

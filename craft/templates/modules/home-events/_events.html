@@ -1,0 +1,4 @@
+{% for entry in craft.entries.section('upcomingEvents').find() %}
+  <h5><a href="{{ entry.url }}">{{ entry.title }}</a></h5>
+  <p>{{ entry.eventStart.w3cDate() }} to<br /> {{ entry.eventEnd.nice() }}</p>
+{% endfor %}
